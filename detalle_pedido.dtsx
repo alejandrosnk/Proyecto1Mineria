@@ -1,0 +1,2241 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/8/2024 3:59:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CON-TO08"
+  DTS:CreatorName="CONELEC\harias"
+  DTS:DTSID="{20ED14D0-9608-48EF-8D90-0AF35CB745A8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="detalle_pedido"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{E8B7A438-0912-4C30-89EC-CF33257BBD4A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Importacion detalle_pedido Oracle"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D2F2F604-DD54-4AA3-971A-E2509245CFD8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Importacion detalle_pedido Oracle"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Importacion detalle_pedido Oracle\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Importacion detalle_pedido Oracle\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Data Conversion.Inputs[Data Conversion Input].Columns[CODIGO_PRODUCTO]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CODIGO_PRODUCTO"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Importacion detalle_pedido Oracle\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[CODIGO_PRODUCTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[CODIGO_PRODUCTO]"
+                      name="CODIGO_PRODUCTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Importacion detalle_pedido Oracle\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DETALLE_PEDIDO"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DETALLE_PEDIDO]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].Columns[CODIGO_PEDIDO]"
+                      cachedDataType="numeric"
+                      cachedName="CODIGO_PEDIDO"
+                      cachedPrecision="10"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_PEDIDO]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_PEDIDO]" />
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].Columns[CODIGO_PRODUCTO]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CODIGO_PRODUCTO"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_PRODUCTO]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[CODIGO_PRODUCTO]" />
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].Columns[CANTIDAD]"
+                      cachedDataType="numeric"
+                      cachedName="CANTIDAD"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].ExternalColumns[CANTIDAD]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CANTIDAD]" />
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].Columns[PRECIO_UNIDAD]"
+                      cachedDataType="numeric"
+                      cachedName="PRECIO_UNIDAD"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].ExternalColumns[PRECIO_UNIDAD]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[PRECIO_UNIDAD]" />
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].Columns[NUMERO_LINEA]"
+                      cachedDataType="numeric"
+                      cachedName="NUMERO_LINEA"
+                      cachedPrecision="5"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].ExternalColumns[NUMERO_LINEA]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[NUMERO_LINEA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_PEDIDO]"
+                      dataType="numeric"
+                      name="CODIGO_PEDIDO"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_PRODUCTO]"
+                      dataType="wstr"
+                      length="15"
+                      name="CODIGO_PRODUCTO" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].ExternalColumns[CANTIDAD]"
+                      dataType="numeric"
+                      name="CANTIDAD"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].ExternalColumns[PRECIO_UNIDAD]"
+                      dataType="numeric"
+                      name="PRECIO_UNIDAD"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input].ExternalColumns[NUMERO_LINEA]"
+                      dataType="numeric"
+                      name="NUMERO_LINEA"
+                      precision="5" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Detalle_pedido Jardineria"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from detalle_pedido</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Connections[OleDbConnection]"
+                  connectionManagerID="{56153DD4-86C3-4D1E-B4CA-056CADF66E9A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[jardineria]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_PEDIDO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CODIGO_PEDIDO]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_PEDIDO]"
+                      name="CODIGO_PEDIDO"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_PRODUCTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CODIGO_PRODUCTO]"
+                      length="15"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_PRODUCTO]"
+                      name="CODIGO_PRODUCTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CANTIDAD]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CANTIDAD]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CANTIDAD]"
+                      name="CANTIDAD"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[PRECIO_UNIDAD]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].ExternalColumns[PRECIO_UNIDAD]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[PRECIO_UNIDAD]"
+                      name="PRECIO_UNIDAD"
+                      precision="15"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[NUMERO_LINEA]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].ExternalColumns[NUMERO_LINEA]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[NUMERO_LINEA]"
+                      name="NUMERO_LINEA"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CODIGO_PEDIDO]"
+                      dataType="numeric"
+                      name="CODIGO_PEDIDO"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CODIGO_PRODUCTO]"
+                      dataType="wstr"
+                      length="15"
+                      name="CODIGO_PRODUCTO" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CANTIDAD]"
+                      dataType="numeric"
+                      name="CANTIDAD"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].ExternalColumns[PRECIO_UNIDAD]"
+                      dataType="numeric"
+                      name="PRECIO_UNIDAD"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].ExternalColumns[NUMERO_LINEA]"
+                      dataType="numeric"
+                      name="NUMERO_LINEA"
+                      precision="5" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[CODIGO_PEDIDO]"
+                      dataType="numeric"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[CODIGO_PEDIDO]"
+                      name="CODIGO_PEDIDO"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[CODIGO_PRODUCTO]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[CODIGO_PRODUCTO]"
+                      name="CODIGO_PRODUCTO" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[CANTIDAD]"
+                      dataType="numeric"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[CANTIDAD]"
+                      name="CANTIDAD"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[PRECIO_UNIDAD]"
+                      dataType="numeric"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[PRECIO_UNIDAD]"
+                      name="PRECIO_UNIDAD"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[NUMERO_LINEA]"
+                      dataType="numeric"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[NUMERO_LINEA]"
+                      name="NUMERO_LINEA"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion detalle_pedido Oracle\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT CODIGO_PEDIDO FROM DETALLE_PEDIDO</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT CODIGO_PEDIDO FROM DETALLE_PEDIDO) [refTable]
+where [refTable].[CODIGO_PEDIDO] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CODIGO_PEDIDO" dataType="DT_NUMERIC" length="0" precision="10" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_PEDIDO]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion detalle_pedido Oracle\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion detalle_pedido Oracle\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Lookup.Inputs[Lookup Input].Columns[CODIGO_PEDIDO]"
+                      cachedDataType="numeric"
+                      cachedName="CODIGO_PEDIDO"
+                      cachedPrecision="10"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_PEDIDO]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CODIGO_PEDIDO</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Importacion detalle_pedido Oracle\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Importacion detalle_pedido Oracle\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Importacion detalle_pedido Oracle\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion detalle_pedido Oracle\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE DETALLE_PEDIDO SET CODIGO_PRODUCTO=?
+WHERE CODIGO_PEDIDO=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Inputs[OLE DB Command Input].Columns[CODIGO_PRODUCTO]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CODIGO_PRODUCTO"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]" />
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Inputs[OLE DB Command Input].Columns[CODIGO_PEDIDO]"
+                      cachedDataType="numeric"
+                      cachedName="CODIGO_PEDIDO"
+                      cachedPrecision="10"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_PEDIDO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="15"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="numeric"
+                      name="Param_1"
+                      precision="10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion detalle_pedido Oracle\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Importacion detalle_pedido Oracle\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Sort.Inputs[Sort Input].Columns[CODIGO_PEDIDO]"
+                      cachedDataType="numeric"
+                      cachedName="CODIGO_PEDIDO"
+                      cachedPrecision="10"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_PEDIDO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Sort.Inputs[Sort Input].Columns[CODIGO_PRODUCTO]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="CODIGO_PRODUCTO"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_PRODUCTO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Sort.Inputs[Sort Input].Columns[CANTIDAD]"
+                      cachedDataType="numeric"
+                      cachedName="CANTIDAD"
+                      cachedPrecision="10"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CANTIDAD]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Sort.Inputs[Sort Input].Columns[PRECIO_UNIDAD]"
+                      cachedDataType="numeric"
+                      cachedName="PRECIO_UNIDAD"
+                      cachedPrecision="15"
+                      cachedScale="2"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[PRECIO_UNIDAD]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Sort.Inputs[Sort Input].Columns[NUMERO_LINEA]"
+                      cachedDataType="numeric"
+                      cachedName="NUMERO_LINEA"
+                      cachedPrecision="5"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[NUMERO_LINEA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_PEDIDO]"
+                      dataType="numeric"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_PEDIDO]"
+                      name="CODIGO_PEDIDO"
+                      precision="10"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_PEDIDO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_PRODUCTO]"
+                      name="CODIGO_PRODUCTO"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_PRODUCTO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CANTIDAD]"
+                      dataType="numeric"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[CANTIDAD]"
+                      name="CANTIDAD"
+                      precision="10">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[CANTIDAD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[PRECIO_UNIDAD]"
+                      dataType="numeric"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[PRECIO_UNIDAD]"
+                      name="PRECIO_UNIDAD"
+                      precision="15"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[PRECIO_UNIDAD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[NUMERO_LINEA]"
+                      dataType="numeric"
+                      lineageId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output].Columns[NUMERO_LINEA]"
+                      name="NUMERO_LINEA"
+                      precision="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output].Columns[NUMERO_LINEA]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Importacion detalle_pedido Oracle.Paths[Data Conversion Output]"
+              endId="Package\Importacion detalle_pedido Oracle\Lookup.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Importacion detalle_pedido Oracle\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Importacion detalle_pedido Oracle.Paths[Lookup Match Output]"
+              endId="Package\Importacion detalle_pedido Oracle\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Importacion detalle_pedido Oracle\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Importacion detalle_pedido Oracle.Paths[Lookup No Match Output]"
+              endId="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Importacion detalle_pedido Oracle\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Importacion detalle_pedido Oracle.Paths[OLE DB Source Output]"
+              endId="Package\Importacion detalle_pedido Oracle\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Importacion detalle_pedido Oracle.Paths[Sort Output]"
+              endId="Package\Importacion detalle_pedido Oracle\Data Conversion.Inputs[Data Conversion Input]"
+              name="Sort Output"
+              startId="Package\Importacion detalle_pedido Oracle\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Importacion Order_Details SQL"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{206F21AB-50E7-4112-AAE0-69667D6659E2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Importacion Order_Details SQL"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Importacion Order_Details SQL\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT ORDERID FROM ORDER_DETAILS</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT ORDERID FROM ORDER_DETAILS) [refTable]
+where [refTable].[ORDERID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ORDERID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[OrderID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion Order_Details SQL\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion Order_Details SQL\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\Lookup.Inputs[Lookup Input].Columns[OrderID]"
+                      cachedDataType="i4"
+                      cachedName="OrderID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[OrderID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ORDERID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion Order_Details SQL\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Importacion Order_Details SQL\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion Order_Details SQL\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Importacion Order_Details SQL\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion Order_Details SQL\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Importacion Order_Details SQL\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion Order_Details SQL\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE ORDER_DETAILS SET PRODUCTID=?
+WHERE ORDERID=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion Order_Details SQL\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion Order_Details SQL\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\OLE DB Command.Inputs[OLE DB Command Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\OLE DB Command.Inputs[OLE DB Command Input].Columns[OrderID]"
+                      cachedDataType="i4"
+                      cachedName="OrderID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[OrderID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion Order_Details SQL\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Importacion Order_Details SQL\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion Order_Details SQL\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Importacion Order_Details SQL\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion Order_Details SQL\ORDER_DETAILS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ORDER_DETAILS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ORDER_DETAILS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].Columns[OrderID]"
+                      cachedDataType="i4"
+                      cachedName="OrderID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].ExternalColumns[OrderID]"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[OrderID]" />
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      cachedDataType="i2"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].Columns[Discount]"
+                      cachedDataType="r4"
+                      cachedName="Discount"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[Discount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].ExternalColumns[OrderID]"
+                      dataType="i4"
+                      name="OrderID" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      dataType="i2"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      dataType="r4"
+                      name="Discount" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion Order_Details SQL\Order_Details Northwind"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Order_Details Northwind"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Order Details]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT * FROM ORDER_DETAILS</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Connections[OleDbConnection]"
+                  connectionManagerID="{65E89A20-2F80-45C9-A77E-75E97632F88D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[OrderID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].ExternalColumns[OrderID]"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[OrderID]"
+                      name="OrderID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[Discount]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[Discount]"
+                      name="Discount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].ExternalColumns[OrderID]"
+                      dataType="i4"
+                      name="OrderID" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="i2"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                      dataType="r4"
+                      name="Discount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[OrderID]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[OrderID]"
+                      name="OrderID" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="i2"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                      dataType="r4"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                      name="Discount" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion Order_Details SQL\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Importacion Order_Details SQL\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\Sort.Inputs[Sort Input].Columns[OrderID]"
+                      cachedDataType="i4"
+                      cachedName="OrderID"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[OrderID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\Sort.Inputs[Sort Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\Sort.Inputs[Sort Input].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[UnitPrice]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\Sort.Inputs[Sort Input].Columns[Quantity]"
+                      cachedDataType="i2"
+                      cachedName="Quantity"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[Quantity]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Order_Details SQL\Sort.Inputs[Sort Input].Columns[Discount]"
+                      cachedDataType="r4"
+                      cachedName="Discount"
+                      lineageId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[Discount]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[OrderID]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[OrderID]"
+                      name="OrderID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[OrderID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[ProductID]"
+                      name="ProductID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[ProductID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[UnitPrice]"
+                      name="UnitPrice">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[UnitPrice]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[Quantity]"
+                      dataType="i2"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[Quantity]"
+                      name="Quantity">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[Quantity]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[Discount]"
+                      dataType="r4"
+                      lineageId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output].Columns[Discount]"
+                      name="Discount">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output].Columns[Discount]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Importacion Order_Details SQL.Paths[Lookup Match Output]"
+              endId="Package\Importacion Order_Details SQL\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Importacion Order_Details SQL\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Importacion Order_Details SQL.Paths[Lookup No Match Output]"
+              endId="Package\Importacion Order_Details SQL\ORDER_DETAILS.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Importacion Order_Details SQL\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Importacion Order_Details SQL.Paths[OLE DB Source Output]"
+              endId="Package\Importacion Order_Details SQL\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Importacion Order_Details SQL\Order_Details Northwind.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Importacion Order_Details SQL.Paths[Sort Output]"
+              endId="Package\Importacion Order_Details SQL\Lookup.Inputs[Lookup Input]"
+              name="Sort Output"
+              startId="Package\Importacion Order_Details SQL\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="241.333333333334,42.6666666666667"
+          Id="Package\Importacion detalle_pedido Oracle"
+          TopLeft="80.416665468365,35.9666660235326" />
+        <NodeLayout
+          Size="226.666666666667,42.6666666666667"
+          Id="Package\Importacion Order_Details SQL"
+          TopLeft="85.8333320543169,137.366664210359" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Importacion detalle_pedido Oracle">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="165.333333333334,42.6666666666667"
+          Id="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO"
+          TopLeft="124.285712433713,269.161899948915" />
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Importacion detalle_pedido Oracle\OLE DB Command"
+          TopLeft="329.166661761701,266.095233711742" />
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Importacion detalle_pedido Oracle\Sort"
+          TopLeft="266.071424606655,54.380951783203" />
+        <NodeLayout
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria"
+          TopLeft="41.6071422371481,29.1571423357725" />
+        <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\Importacion detalle_pedido Oracle\Data Conversion"
+          TopLeft="152.976188196668,122.476188660803" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\Importacion detalle_pedido Oracle\Lookup"
+          TopLeft="152.142854875752,194.633330830534" />
+        <EdgeLayout
+          Id="Package\Importacion detalle_pedido Oracle.Paths[Sort Output]"
+          TopLeft="315.404757939989,97.0476184498696">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-83.7619030766543,25.4285702109337"
+              Start="0,0"
+              End="-83.7619030766543,17.9285702109337">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.71428510546686" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.71428510546686"
+                    Point2="0,12.7142851054669"
+                    Point3="-4,12.7142851054669" />
+                  <mssgle:LineSegment
+                    End="-79.7619030766543,12.7142851054669" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-79.7619030766543,12.7142851054669"
+                    Point2="-83.7619030766543,12.7142851054669"
+                    Point3="-83.7619030766543,16.7142851054669" />
+                  <mssgle:LineSegment
+                    End="-83.7619030766543,17.9285702109337" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion detalle_pedido Oracle.Paths[OLE DB Source Output]"
+          TopLeft="240.273808903815,50.4904756691059">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.7976157028406,25.2238094474304"
+              Start="0,0"
+              End="18.2976157028406,25.2238094474304">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="8.89880785142032,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.89880785142032,0"
+                    Point2="12.8988078514203,0"
+                    Point3="12.8988078514203,4" />
+                  <mssgle:LineSegment
+                    End="12.8988078514203,21.2238094474304" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.8988078514203,21.2238094474304"
+                    Point2="12.8988078514203,25.2238094474304"
+                    Point3="16.8988078514203,25.2238094474304" />
+                  <mssgle:LineSegment
+                    End="18.2976157028406,25.2238094474304" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion detalle_pedido Oracle.Paths[Lookup No Match Output]"
+          TopLeft="207.880950321399,237.299997497201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.8619024517139"
+              Start="0,0"
+              End="0,24.3619024517139">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.3619024517139" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,6.37626372585697,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion detalle_pedido Oracle.Paths[Lookup Match Output]"
+          TopLeft="226.365077097974,237.299997497201">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="186.13491799706,28.7952362145414"
+              Start="0,0"
+              End="186.13491799706,21.2952362145414">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.75861154004473" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.75861154004473"
+                    Point2="0,11.7586115400447"
+                    Point3="4,11.7586115400447" />
+                  <mssgle:LineSegment
+                    End="182.13491799706,11.7586115400447" />
+                  <mssgle:CubicBezierSegment
+                    Point1="182.13491799706,11.7586115400447"
+                    Point2="186.13491799706,11.7586115400447"
+                    Point3="186.13491799706,15.7586115400447" />
+                  <mssgle:LineSegment
+                    End="186.13491799706,21.2952362145414" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="44.8760722797801,16.7586115400447,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion detalle_pedido Oracle.Paths[Data Conversion Output]"
+          TopLeft="231.642854863334,165.14285532747">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-22.8333333209157,29.4904755030643"
+              Start="0,0"
+              End="-22.8333333209157,21.9904755030643">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.7452377515322" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.7452377515322"
+                    Point2="0,14.7452377515322"
+                    Point3="-4,14.7452377515322" />
+                  <mssgle:LineSegment
+                    End="-18.8333333209157,14.7452377515322" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.8333333209157,14.7452377515322"
+                    Point2="-22.8333333209157,14.7452377515322"
+                    Point3="-22.8333333209157,18.7452377515322" />
+                  <mssgle:LineSegment
+                    End="-22.8333333209157,21.9904755030643" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion detalle_pedido Oracle\DETALLE_PEDIDO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion detalle_pedido Oracle\Detalle_pedido Jardineria">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion detalle_pedido Oracle\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Importacion Order_Details SQL">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="196,42.6666666666667"
+          Id="Package\Importacion Order_Details SQL\Order_Details Northwind"
+          TopLeft="98.7499985285103,30.3333327909311" />
+        <NodeLayout
+          Size="160,42.6666666666667"
+          Id="Package\Importacion Order_Details SQL\ORDER_DETAILS"
+          TopLeft="114.464284008635,253.68570974946" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\Importacion Order_Details SQL\Lookup"
+          TopLeft="133.511902772422,149.142854773998" />
+        <EdgeLayout
+          Id="Package\Importacion Order_Details SQL.Paths[Lookup No Match Output]"
+          TopLeft="192.321426723862,191.809521440665">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.8761883087952"
+              Start="0,0"
+              End="0,54.3761883087952">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.3761883087952" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,21.3834066543976,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Importacion Order_Details SQL\Sort"
+          TopLeft="242.261901151921,90.5238080072971" />
+        <EdgeLayout
+          Id="Package\Importacion Order_Details SQL.Paths[OLE DB Source Output]"
+          TopLeft="294.74999852851,51.6666661242644">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-3.15476404325591,38.8571418830327"
+              Start="0,0"
+              End="-3.15476404325591,31.3571418830327">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0.845235956744091,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0.845235956744091,0"
+                    Point2="-3.15476404325591,0"
+                    Point3="-3.15476404325591,4" />
+                  <mssgle:LineSegment
+                    End="-3.15476404325591,31.3571418830327" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion Order_Details SQL.Paths[Sort Output]"
+          TopLeft="242.261901151921,111.85714134063">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-52.0833317128321,37.2857134333679"
+              Start="0,0"
+              End="-52.0833317128321,29.7857134333679">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-48.0833317128321,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-48.0833317128321,0"
+                    Point2="-52.0833317128321,0"
+                    Point3="-52.0833317128321,4" />
+                  <mssgle:LineSegment
+                    End="-52.0833317128321,29.7857134333679" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Importacion Order_Details SQL\OLE DB Command"
+          TopLeft="354.166661389172,256.428566945451" />
+        <EdgeLayout
+          Id="Package\Importacion Order_Details SQL.Paths[Lookup Match Output]"
+          TopLeft="207.734124994645,191.809521440665">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="229.765869727861,64.6190455047857"
+              Start="0,0"
+              End="229.765869727861,57.1190455047857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.387359649286" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.387359649286"
+                    Point2="0,26.387359649286"
+                    Point3="4,26.387359649286" />
+                  <mssgle:LineSegment
+                    End="225.765869727861,26.387359649286" />
+                  <mssgle:CubicBezierSegment
+                    Point1="225.765869727861,26.387359649286"
+                    Point2="229.765869727861,26.387359649286"
+                    Point3="229.765869727861,30.387359649286" />
+                  <mssgle:LineSegment
+                    End="229.765869727861,57.1190455047857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="66.6915481451804,31.387359649286,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion Order_Details SQL\Order_Details Northwind">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion Order_Details SQL\ORDER_DETAILS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion Order_Details SQL\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

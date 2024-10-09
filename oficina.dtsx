@@ -1,0 +1,2800 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/8/2024 4:39:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CON-TO08"
+  DTS:CreatorName="CONELEC\harias"
+  DTS:DTSID="{9852E313-5E48-4004-8060-529F6F8AA4E9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="oficina"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{E2390CB5-1ABA-4AD4-A081-A052F0CA0A50}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Importacion oficina Oracle"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9EEDD603-16B1-4305-918C-EF46BA7D3324}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Importacion oficina Oracle"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Importacion oficina Oracle\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT CODIGO_OFICINA FROM OFICINA</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT CODIGO_OFICINA FROM OFICINA) [refTable]
+where [refTable].[CODIGO_OFICINA] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CODIGO_OFICINA" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_OFICINA]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion oficina Oracle\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion oficina Oracle\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\Lookup.Inputs[Lookup Input].Columns[CODIGO_OFICINA]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CODIGO_OFICINA"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_OFICINA]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CODIGO_OFICINA</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion oficina Oracle\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Importacion oficina Oracle\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion oficina Oracle\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Importacion oficina Oracle\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion oficina Oracle\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Importacion oficina Oracle\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion oficina Oracle\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion oficina Oracle\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion oficina Oracle\OFICINA"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OFICINA"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[OFICINA]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion oficina Oracle\OFICINA.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].Columns[CODIGO_OFICINA]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CODIGO_OFICINA"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_OFICINA]"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_OFICINA]" />
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].Columns[CIUDAD]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="CIUDAD"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[CIUDAD]"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CIUDAD]" />
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].Columns[PAIS]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="PAIS"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[PAIS]"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[PAIS]" />
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].Columns[REGION]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="REGION"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[REGION]"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[REGION]" />
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].Columns[CODIGO_POSTAL]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CODIGO_POSTAL"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_POSTAL]"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_POSTAL]" />
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].Columns[TELEFONO]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TELEFONO"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[TELEFONO]"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[TELEFONO]" />
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].Columns[LINEA_DIRECCION1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LINEA_DIRECCION1"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[LINEA_DIRECCION1]"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[LINEA_DIRECCION1]" />
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].Columns[LINEA_DIRECCION2]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LINEA_DIRECCION2"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[LINEA_DIRECCION2]"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[LINEA_DIRECCION2]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_OFICINA]"
+                      dataType="wstr"
+                      length="10"
+                      name="CODIGO_OFICINA" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[CIUDAD]"
+                      dataType="wstr"
+                      length="30"
+                      name="CIUDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[PAIS]"
+                      dataType="wstr"
+                      length="50"
+                      name="PAIS" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[REGION]"
+                      dataType="wstr"
+                      length="50"
+                      name="REGION" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_POSTAL]"
+                      dataType="wstr"
+                      length="10"
+                      name="CODIGO_POSTAL" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[TELEFONO]"
+                      dataType="wstr"
+                      length="20"
+                      name="TELEFONO" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[LINEA_DIRECCION1]"
+                      dataType="wstr"
+                      length="50"
+                      name="LINEA_DIRECCION1" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input].ExternalColumns[LINEA_DIRECCION2]"
+                      dataType="wstr"
+                      length="50"
+                      name="LINEA_DIRECCION2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion oficina Oracle\OFICINA.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion oficina Oracle\OFICINA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\OFICINA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion oficina Oracle\OFICINA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion oficina Oracle\Oficina Jardineria"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Oficina Jardineria"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT * FROM OFICINA</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion oficina Oracle\Oficina Jardineria.Connections[OleDbConnection]"
+                  connectionManagerID="{56153DD4-86C3-4D1E-B4CA-056CADF66E9A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[jardineria]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_OFICINA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CODIGO_OFICINA]"
+                      length="10"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_OFICINA]"
+                      name="CODIGO_OFICINA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CIUDAD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CIUDAD]"
+                      length="30"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CIUDAD]"
+                      name="CIUDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[PAIS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[PAIS]"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[PAIS]"
+                      name="PAIS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[REGION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[REGION]"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[REGION]"
+                      name="REGION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_POSTAL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CODIGO_POSTAL]"
+                      length="10"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_POSTAL]"
+                      name="CODIGO_POSTAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[TELEFONO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[TELEFONO]"
+                      length="20"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[TELEFONO]"
+                      name="TELEFONO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[LINEA_DIRECCION1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[LINEA_DIRECCION1]"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[LINEA_DIRECCION1]"
+                      name="LINEA_DIRECCION1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[LINEA_DIRECCION2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[LINEA_DIRECCION2]"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[LINEA_DIRECCION2]"
+                      name="LINEA_DIRECCION2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CODIGO_OFICINA]"
+                      dataType="wstr"
+                      length="10"
+                      name="CODIGO_OFICINA" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CIUDAD]"
+                      dataType="wstr"
+                      length="30"
+                      name="CIUDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[PAIS]"
+                      dataType="wstr"
+                      length="50"
+                      name="PAIS" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[REGION]"
+                      dataType="wstr"
+                      length="50"
+                      name="REGION" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[CODIGO_POSTAL]"
+                      dataType="wstr"
+                      length="10"
+                      name="CODIGO_POSTAL" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[TELEFONO]"
+                      dataType="wstr"
+                      length="20"
+                      name="TELEFONO" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[LINEA_DIRECCION1]"
+                      dataType="wstr"
+                      length="50"
+                      name="LINEA_DIRECCION1" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].ExternalColumns[LINEA_DIRECCION2]"
+                      dataType="wstr"
+                      length="50"
+                      name="LINEA_DIRECCION2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[CODIGO_OFICINA]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[CODIGO_OFICINA]"
+                      name="CODIGO_OFICINA" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[CIUDAD]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[CIUDAD]"
+                      name="CIUDAD" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[PAIS]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[PAIS]"
+                      name="PAIS" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[REGION]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[REGION]"
+                      name="REGION" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[CODIGO_POSTAL]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[CODIGO_POSTAL]"
+                      name="CODIGO_POSTAL" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[TELEFONO]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[TELEFONO]"
+                      name="TELEFONO" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[LINEA_DIRECCION1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[LINEA_DIRECCION1]"
+                      name="LINEA_DIRECCION1" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[LINEA_DIRECCION2]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[LINEA_DIRECCION2]"
+                      name="LINEA_DIRECCION2" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion oficina Oracle\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE OFICINA SET CIUDAD=?
+WHERE CODIGO_OFICINA=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion oficina Oracle\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion oficina Oracle\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\OLE DB Command.Inputs[OLE DB Command Input].Columns[CIUDAD]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="CIUDAD"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CIUDAD]" />
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\OLE DB Command.Inputs[OLE DB Command Input].Columns[CODIGO_OFICINA]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CODIGO_OFICINA"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion oficina Oracle\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_OFICINA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="30"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Importacion oficina Oracle\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="10"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion oficina Oracle\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Importacion oficina Oracle\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion oficina Oracle\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Importacion oficina Oracle\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion oficina Oracle\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion oficina Oracle\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion oficina Oracle\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Importacion oficina Oracle\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Inputs[Sort Input].Columns[CODIGO_OFICINA]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CODIGO_OFICINA"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_OFICINA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Inputs[Sort Input].Columns[CIUDAD]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="CIUDAD"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CIUDAD]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Inputs[Sort Input].Columns[PAIS]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="PAIS"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[PAIS]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Inputs[Sort Input].Columns[REGION]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="REGION"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[REGION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Inputs[Sort Input].Columns[CODIGO_POSTAL]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CODIGO_POSTAL"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_POSTAL]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Inputs[Sort Input].Columns[TELEFONO]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TELEFONO"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[TELEFONO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Inputs[Sort Input].Columns[LINEA_DIRECCION1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LINEA_DIRECCION1"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[LINEA_DIRECCION1]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Inputs[Sort Input].Columns[LINEA_DIRECCION2]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LINEA_DIRECCION2"
+                      lineageId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[LINEA_DIRECCION2]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_OFICINA]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_OFICINA]"
+                      name="CODIGO_OFICINA"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_OFICINA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CIUDAD]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CIUDAD]"
+                      name="CIUDAD"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CIUDAD]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[PAIS]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[PAIS]"
+                      name="PAIS">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[PAIS]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[REGION]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[REGION]"
+                      name="REGION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[REGION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_POSTAL]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[CODIGO_POSTAL]"
+                      name="CODIGO_POSTAL">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[CODIGO_POSTAL]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[TELEFONO]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[TELEFONO]"
+                      name="TELEFONO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[TELEFONO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[LINEA_DIRECCION1]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[LINEA_DIRECCION1]"
+                      name="LINEA_DIRECCION1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[LINEA_DIRECCION1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[LINEA_DIRECCION2]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output].Columns[LINEA_DIRECCION2]"
+                      name="LINEA_DIRECCION2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output].Columns[LINEA_DIRECCION2]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Importacion oficina Oracle.Paths[Lookup Match Output]"
+              endId="Package\Importacion oficina Oracle\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Importacion oficina Oracle\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Importacion oficina Oracle.Paths[Lookup No Match Output]"
+              endId="Package\Importacion oficina Oracle\OFICINA.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Importacion oficina Oracle\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Importacion oficina Oracle.Paths[OLE DB Source Output]"
+              endId="Package\Importacion oficina Oracle\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Importacion oficina Oracle\Oficina Jardineria.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Importacion oficina Oracle.Paths[Sort Output]"
+              endId="Package\Importacion oficina Oracle\Lookup.Inputs[Lookup Input]"
+              name="Sort Output"
+              startId="Package\Importacion oficina Oracle\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Importacion Suppliers SQL"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8D278B25-5845-40D3-B72E-68B5A4178AA9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Importacion Suppliers SQL"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Importacion Suppliers SQL\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT SUPPLIERID FROM SUPPLIERS</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT SUPPLIERID FROM SUPPLIERS) [refTable]
+where [refTable].[SUPPLIERID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SUPPLIERID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[SupplierID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion Suppliers SQL\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion Suppliers SQL\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Lookup.Inputs[Lookup Input].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[SupplierID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">SUPPLIERID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion Suppliers SQL\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Importacion Suppliers SQL\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion Suppliers SQL\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Importacion Suppliers SQL\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion Suppliers SQL\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Importacion Suppliers SQL\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Suppliers SQL\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Suppliers SQL\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion Suppliers SQL\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE SUPPLIERS SET COMPANYNAME=?
+WHERE SUPPLIERID=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion Suppliers SQL\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion Suppliers SQL\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\OLE DB Command.Inputs[OLE DB Command Input].Columns[CompanyName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="CompanyName"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[CompanyName]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\OLE DB Command.Inputs[OLE DB Command Input].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[SupplierID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="40"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion Suppliers SQL\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Importacion Suppliers SQL\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion Suppliers SQL\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Importacion Suppliers SQL\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Suppliers SQL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Suppliers SQL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion Suppliers SQL\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[SupplierID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[CompanyName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="CompanyName"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[CompanyName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[ContactName]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="ContactName"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[ContactName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[ContactTitle]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="ContactTitle"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[ContactTitle]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="Address"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Address]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="City"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[City]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[Region]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="Region"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Region]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PostalCode"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[PostalCode]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="Country"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="Phone"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Phone]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[Fax]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="Fax"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Fax]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input].Columns[HomePage]"
+                      cachedDataType="nText"
+                      cachedName="HomePage"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[HomePage]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[SupplierID]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[SupplierID]"
+                      name="SupplierID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[SupplierID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[CompanyName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[CompanyName]"
+                      name="CompanyName"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[CompanyName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[ContactName]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[ContactName]"
+                      name="ContactName">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[ContactName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[ContactTitle]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[ContactTitle]"
+                      name="ContactTitle">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[ContactTitle]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Address]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Address]"
+                      name="Address">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Address]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[City]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[City]"
+                      name="City">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[City]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Region]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Region]"
+                      name="Region">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Region]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[PostalCode]"
+                      name="PostalCode">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[PostalCode]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Country]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Country]"
+                      name="Country">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Country]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Phone]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Phone]"
+                      name="Phone">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Phone]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Fax]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Fax]"
+                      name="Fax">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Fax]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[HomePage]"
+                      dataType="nText"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[HomePage]"
+                      name="HomePage">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[HomePage]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion Suppliers SQL\SUPPLIERS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="SUPPLIERS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[SUPPLIERS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion Suppliers SQL\SUPPLIERS.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[SupplierID]"
+                      cachedDataType="i4"
+                      cachedName="SupplierID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[SupplierID]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[CompanyName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="CompanyName"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[CompanyName]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[CompanyName]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[ContactName]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="ContactName"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[ContactName]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[ContactName]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[ContactTitle]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="ContactTitle"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[ContactTitle]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[ContactTitle]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="Address"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Address]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[Region]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="Region"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Region]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="PostalCode"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[PostalCode]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="Phone"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Phone]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[Fax]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="Fax"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[Fax]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[Fax]" />
+                    <inputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].Columns[HomePage]"
+                      cachedDataType="nText"
+                      cachedName="HomePage"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[HomePage]"
+                      lineageId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output].Columns[HomePage]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                      dataType="i4"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[CompanyName]"
+                      dataType="wstr"
+                      length="40"
+                      name="CompanyName" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[ContactName]"
+                      dataType="wstr"
+                      length="30"
+                      name="ContactName" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[ContactTitle]"
+                      dataType="wstr"
+                      length="30"
+                      name="ContactTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="60"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="15"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="15"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="15"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="24"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[Fax]"
+                      dataType="wstr"
+                      length="24"
+                      name="Fax" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input].ExternalColumns[HomePage]"
+                      dataType="nText"
+                      name="HomePage" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion Suppliers SQL\SUPPLIERS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Suppliers SQL\SUPPLIERS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\SUPPLIERS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Suppliers SQL\SUPPLIERS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion Suppliers SQL\Suppliers Northwind"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Suppliers Northwind"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT * FROM SUPPLIERS</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Connections[OleDbConnection]"
+                  connectionManagerID="{65E89A20-2F80-45C9-A77E-75E97632F88D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[SupplierID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[SupplierID]"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[SupplierID]"
+                      name="SupplierID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[CompanyName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[CompanyName]"
+                      length="40"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[CompanyName]"
+                      name="CompanyName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[ContactName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[ContactName]"
+                      length="30"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[ContactName]"
+                      name="ContactName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[ContactTitle]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[ContactTitle]"
+                      length="30"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[ContactTitle]"
+                      name="ContactTitle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Address]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                      length="60"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Address]"
+                      name="Address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      length="15"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      length="15"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Region]"
+                      name="Region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                      length="10"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[PostalCode]"
+                      name="PostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      length="15"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                      length="24"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Fax]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[Fax]"
+                      length="24"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[Fax]"
+                      name="Fax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[HomePage]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[HomePage]"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].Columns[HomePage]"
+                      name="HomePage"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[SupplierID]"
+                      dataType="i4"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[CompanyName]"
+                      dataType="wstr"
+                      length="40"
+                      name="CompanyName" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[ContactName]"
+                      dataType="wstr"
+                      length="30"
+                      name="ContactName" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[ContactTitle]"
+                      dataType="wstr"
+                      length="30"
+                      name="ContactTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="60"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="15"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="15"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="15"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="24"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[Fax]"
+                      dataType="wstr"
+                      length="24"
+                      name="Fax" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output].ExternalColumns[HomePage]"
+                      dataType="nText"
+                      name="HomePage" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[SupplierID]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[SupplierID]"
+                      name="SupplierID" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[CompanyName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[CompanyName]"
+                      name="CompanyName" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[ContactName]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[ContactName]"
+                      name="ContactName" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[ContactTitle]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[ContactTitle]"
+                      name="ContactTitle" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[Address]"
+                      dataType="wstr"
+                      length="60"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[Address]"
+                      name="Address" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      name="Region" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[PostalCode]"
+                      name="PostalCode" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[Fax]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[Fax]"
+                      name="Fax" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[HomePage]"
+                      dataType="nText"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[HomePage]"
+                      name="HomePage" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Importacion Suppliers SQL.Paths[Lookup Match Output]"
+              endId="Package\Importacion Suppliers SQL\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Importacion Suppliers SQL\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Importacion Suppliers SQL.Paths[Lookup No Match Output]"
+              endId="Package\Importacion Suppliers SQL\SUPPLIERS.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Importacion Suppliers SQL\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Importacion Suppliers SQL.Paths[OLE DB Source Output]"
+              endId="Package\Importacion Suppliers SQL\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Importacion Suppliers SQL\Suppliers Northwind.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Importacion Suppliers SQL.Paths[Sort Output]"
+              endId="Package\Importacion Suppliers SQL\Lookup.Inputs[Lookup Input]"
+              name="Sort Output"
+              startId="Package\Importacion Suppliers SQL\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="204,42.6666666666667"
+          Id="Package\Importacion oficina Oracle"
+          TopLeft="99.5833318494261,53.7333323725065" />
+        <NodeLayout
+          Size="204,44"
+          Id="Package\Importacion Suppliers SQL"
+          TopLeft="106.249998416752,149.733330667814" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Importacion oficina Oracle">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Importacion oficina Oracle\OLE DB Command"
+          TopLeft="304.761900220599,289.285709470511" />
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Importacion oficina Oracle\Sort"
+          TopLeft="266.666662693024,95.7619035774754" />
+        <NodeLayout
+          Size="120,42.6666666666667"
+          Id="Package\Importacion oficina Oracle\OFICINA"
+          TopLeft="105.416665095836,290.771423419714" />
+        <NodeLayout
+          Size="161.333333333334,42.6666666666667"
+          Id="Package\Importacion oficina Oracle\Oficina Jardineria"
+          TopLeft="84.9999987334013,19.3142853689194" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\Importacion oficina Oracle\Lookup"
+          TopLeft="117.261903014566,143.999997918946" />
+        <EdgeLayout
+          Id="Package\Importacion oficina Oracle.Paths[OLE DB Source Output]"
+          TopLeft="165.666665400068,61.980952035586">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="150.333330626289,33.7809515418893"
+              Start="0,0"
+              End="150.333330626289,26.2809515418893">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.8904757709447" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.8904757709447"
+                    Point2="0,16.8904757709447"
+                    Point3="4,16.8904757709447" />
+                  <mssgle:LineSegment
+                    End="146.333330626289,16.8904757709447" />
+                  <mssgle:CubicBezierSegment
+                    Point1="146.333330626289,16.8904757709447"
+                    Point2="150.333330626289,16.8904757709447"
+                    Point3="150.333330626289,20.8904757709447" />
+                  <mssgle:LineSegment
+                    End="150.333330626289,26.2809515418893" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion oficina Oracle.Paths[Lookup No Match Output]"
+          TopLeft="173.928569681233,186.666664585613">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.51190458539696,104.104758834101"
+              Start="0,0"
+              End="-8.51190458539696,96.6047588341009">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.0523794170504" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.0523794170504"
+                    Point2="0,52.0523794170504"
+                    Point3="-4,52.0523794170504" />
+                  <mssgle:LineSegment
+                    End="-4.51190458539696,52.0523794170504" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.51190458539696,52.0523794170504"
+                    Point2="-8.51190458539696,52.0523794170504"
+                    Point3="-8.51190458539696,56.0523794170504" />
+                  <mssgle:LineSegment
+                    End="-8.51190458539696,96.6047588341009" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-60.0623390114485,57.0523794170504,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion oficina Oracle.Paths[Lookup Match Output]"
+          TopLeft="191.484125236788,186.666664585613">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="196.611108317143,102.619044884898"
+              Start="0,0"
+              End="196.611108317143,95.1190448848975">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.9047607882644" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.9047607882644"
+                    Point2="0,41.9047607882644"
+                    Point3="4,41.9047607882644" />
+                  <mssgle:LineSegment
+                    End="192.611108317143,41.9047607882644" />
+                  <mssgle:CubicBezierSegment
+                    Point1="192.611108317143,41.9047607882644"
+                    Point2="196.611108317143,41.9047607882644"
+                    Point3="196.611108317143,45.9047607882644" />
+                  <mssgle:LineSegment
+                    End="196.611108317143,95.1190448848975" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="50.1141674398217,46.9047607882644,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion oficina Oracle.Paths[Sort Output]"
+          TopLeft="266.666662693024,117.095236910809">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-36.0714263451241,48.2380943414711"
+              Start="0,0"
+              End="-28.5714263451241,48.2380943414711">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-14.0357131725621,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.0357131725621,0"
+                    Point2="-18.0357131725621,0"
+                    Point3="-18.0357131725621,4" />
+                  <mssgle:LineSegment
+                    End="-18.0357131725621,44.2380943414711" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.0357131725621,44.2380943414711"
+                    Point2="-18.0357131725621,48.2380943414711"
+                    Point3="-22.0357131725621,48.2380943414711" />
+                  <mssgle:LineSegment
+                    End="-28.5714263451241,48.2380943414711" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion oficina Oracle\Oficina Jardineria">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion oficina Oracle\OFICINA">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion oficina Oracle\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Importacion Suppliers SQL">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="132,42.6666666666667"
+          Id="Package\Importacion Suppliers SQL\SUPPLIERS"
+          TopLeft="94.6874985890462,228.474995914549" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Importacion Suppliers SQL\Suppliers Northwind"
+          TopLeft="46.2499993108214,23.7916665988664" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\Importacion Suppliers SQL\Lookup"
+          TopLeft="158.854164299555,146.374997665733" />
+        <EdgeLayout
+          Id="Package\Importacion Suppliers SQL.Paths[Lookup No Match Output]"
+          TopLeft="215.520830966222,189.0416643324">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-54.8333323771755,39.4333315821489"
+              Start="0,0"
+              End="-54.8333323771755,31.9333315821489">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.7166657910744" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.7166657910744"
+                    Point2="0,19.7166657910744"
+                    Point3="-4,19.7166657910744" />
+                  <mssgle:LineSegment
+                    End="-50.8333323771755,19.7166657910744" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-50.8333323771755,19.7166657910744"
+                    Point2="-54.8333323771755,19.7166657910744"
+                    Point3="-54.8333323771755,23.7166657910744" />
+                  <mssgle:LineSegment
+                    End="-54.8333323771755,31.9333315821489" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-83.2230529073378,24.7166657910744,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Importacion Suppliers SQL\Sort"
+          TopLeft="257.812496158294,87.3333320548137" />
+        <EdgeLayout
+          Id="Package\Importacion Suppliers SQL.Paths[OLE DB Source Output]"
+          TopLeft="220.916665977488,45.1249999321997">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.8958301808064,63.5416654559473"
+              Start="0,0"
+              End="29.3958301808064,63.5416654559473">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="14.4479150904032,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.4479150904032,0"
+                    Point2="18.4479150904032,0"
+                    Point3="18.4479150904032,4" />
+                  <mssgle:LineSegment
+                    End="18.4479150904032,59.5416654559473" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.4479150904032,59.5416654559473"
+                    Point2="18.4479150904032,63.5416654559473"
+                    Point3="22.4479150904032,63.5416654559473" />
+                  <mssgle:LineSegment
+                    End="29.3958301808064,63.5416654559473" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion Suppliers SQL.Paths[Sort Output]"
+          TopLeft="257.812496158294,114.444443165925">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-42.2916651920727,31.9305544998083"
+              Start="0,0"
+              End="-42.2916651920727,24.4305544998083">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-38.2916651920727,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-38.2916651920727,0"
+                    Point2="-42.2916651920727,0"
+                    Point3="-42.2916651920727,4" />
+                  <mssgle:LineSegment
+                    End="-42.2916651920727,24.4305544998083" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Importacion Suppliers SQL\OLE DB Command"
+          TopLeft="340.624994924292,236.833329381545" />
+        <EdgeLayout
+          Id="Package\Importacion Suppliers SQL.Paths[Lookup Match Output]"
+          TopLeft="233.076386521777,189.0416643324">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="190.881941735848,47.7916650491456"
+              Start="0,0"
+              End="190.881941735848,40.2916650491456">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5158539411824" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5158539411824"
+                    Point2="0,19.5158539411824"
+                    Point3="4,19.5158539411824" />
+                  <mssgle:LineSegment
+                    End="186.881941735848,19.5158539411824" />
+                  <mssgle:CubicBezierSegment
+                    Point1="186.881941735848,19.5158539411824"
+                    Point2="190.881941735848,19.5158539411824"
+                    Point3="190.881941735848,23.5158539411824" />
+                  <mssgle:LineSegment
+                    End="190.881941735848,40.2916650491456" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="47.249584149174,24.5158539411824,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion Suppliers SQL\SUPPLIERS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion Suppliers SQL\Suppliers Northwind">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion Suppliers SQL\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

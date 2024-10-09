@@ -1,0 +1,894 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/8/2024 6:37:03 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CON-TO08"
+  DTS:CreatorName="CONELEC\harias"
+  DTS:DTSID="{6E29BA77-9173-47ED-8EB3-73A3A7D87E9D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="employee_territories"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{8DAB60D8-25E8-40C8-A03D-511BD2EC3052}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Importacion EmployeeTerritories Northwind"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7B0CE965-DF02-479A-A825-9356DCCD40D6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Importacion EmployeeTerritories Northwind"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="EMPLOYEE_TERRITORIES"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[EMPLOYEE_TERRITORIES]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Inputs[OLE DB Destination Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output].Columns[EmployeeID]" />
+                    <inputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TerritoryID"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryID]"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output].Columns[TerritoryID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryID]"
+                      dataType="wstr"
+                      length="20"
+                      name="TerritoryID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Employee_Territories Northwind"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT * FROM EMPLOYEETERRITORIES</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Connections[OleDbConnection]"
+                  connectionManagerID="{65E89A20-2F80-45C9-A77E-75E97632F88D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[northwind]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].Columns[TerritoryID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
+                      length="20"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].Columns[TerritoryID]"
+                      name="TerritoryID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
+                      dataType="wstr"
+                      length="20"
+                      name="TerritoryID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      name="EmployeeID" />
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                      name="TerritoryID" />
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion EmployeeTerritories Northwind\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT EMPLOYEEID FROM EMPLOYEE_TERRITORIES</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT EMPLOYEEID FROM EMPLOYEE_TERRITORIES) [refTable]
+where [refTable].[EMPLOYEEID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="EMPLOYEEID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].Columns[EmployeeID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion EmployeeTerritories Northwind\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion EmployeeTerritories Northwind\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Lookup.Inputs[Lookup Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output].Columns[EmployeeID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">EMPLOYEEID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion EmployeeTerritories Northwind\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Importacion EmployeeTerritories Northwind\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion EmployeeTerritories Northwind\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Importacion EmployeeTerritories Northwind\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion EmployeeTerritories Northwind\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Importacion EmployeeTerritories Northwind\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE EMPLOYEE_TERRITORIES SET TERRITORYID=?
+WHERE EMPLOYEEID=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Inputs[OLE DB Command Input].Columns[TerritoryID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TerritoryID"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output].Columns[TerritoryID]" />
+                    <inputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Inputs[OLE DB Command Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output].Columns[EmployeeID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="20"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion EmployeeTerritories Northwind\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Importacion EmployeeTerritories Northwind\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Sort.Inputs[Sort Input].Columns[EmployeeID]"
+                      cachedDataType="i4"
+                      cachedName="EmployeeID"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].Columns[EmployeeID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Sort.Inputs[Sort Input].Columns[TerritoryID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TerritoryID"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].Columns[TerritoryID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output].Columns[EmployeeID]"
+                      dataType="i4"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].Columns[EmployeeID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output].Columns[TerritoryID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output].Columns[TerritoryID]"
+                      name="TerritoryID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output].Columns[TerritoryID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Importacion EmployeeTerritories Northwind.Paths[Lookup Match Output]"
+              endId="Package\Importacion EmployeeTerritories Northwind\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Importacion EmployeeTerritories Northwind\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Importacion EmployeeTerritories Northwind.Paths[Lookup No Match Output]"
+              endId="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Importacion EmployeeTerritories Northwind\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Importacion EmployeeTerritories Northwind.Paths[OLE DB Source Output]"
+              endId="Package\Importacion EmployeeTerritories Northwind\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Importacion EmployeeTerritories Northwind.Paths[Sort Output]"
+              endId="Package\Importacion EmployeeTerritories Northwind\Lookup.Inputs[Lookup Input]"
+              name="Sort Output"
+              startId="Package\Importacion EmployeeTerritories Northwind\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="285.333333333334,42.6666666666667"
+          Id="Package\Importacion EmployeeTerritories Northwind"
+          TopLeft="77.9166655056178,51.5666657445828" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Importacion EmployeeTerritories Northwind">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="230.666666666667,42.6666666666667"
+          Id="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind"
+          TopLeft="110.972220568607,12.8555553256803" />
+        <NodeLayout
+          Size="202.666666666667,42.6666666666667"
+          Id="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES"
+          TopLeft="152.083331067115,326.444438607163" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\Importacion EmployeeTerritories Northwind\Lookup"
+          TopLeft="195.833330415189,198.611107559668" />
+        <EdgeLayout
+          Id="Package\Importacion EmployeeTerritories Northwind.Paths[Lookup No Match Output]"
+          TopLeft="252.958330741152,241.277774226334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,85.1666643808285"
+              Start="0,0"
+              End="0,77.6666643808285">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.6666643808285" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,33.0286446904143,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Importacion EmployeeTerritories Northwind\Sort"
+          TopLeft="315.277773079773,93.3333320418994" />
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Importacion EmployeeTerritories Northwind\OLE DB Command"
+          TopLeft="443.74999338761,341.055549834503" />
+        <EdgeLayout
+          Id="Package\Importacion EmployeeTerritories Northwind.Paths[OLE DB Source Output]"
+          TopLeft="226.305553901941,55.522221992347">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="138.305552511166,37.8111100495524"
+              Start="0,0"
+              End="138.305552511166,30.3111100495524">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.9055550247762" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.9055550247762"
+                    Point2="0,18.9055550247762"
+                    Point3="4,18.9055550247762" />
+                  <mssgle:LineSegment
+                    End="134.305552511166,18.9055550247762" />
+                  <mssgle:CubicBezierSegment
+                    Point1="134.305552511166,18.9055550247762"
+                    Point2="138.305552511166,18.9055550247762"
+                    Point3="138.305552511166,22.9055550247762" />
+                  <mssgle:LineSegment
+                    End="138.305552511166,30.3111100495524" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion EmployeeTerritories Northwind.Paths[Sort Output]"
+          TopLeft="364.611106413106,135.999998708566">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-112.11110933125,62.6111088511018"
+              Start="0,0"
+              End="-112.11110933125,55.1111088511018">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.3055544255509" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.3055544255509"
+                    Point2="0,31.3055544255509"
+                    Point3="-4,31.3055544255509" />
+                  <mssgle:LineSegment
+                    End="-108.11110933125,31.3055544255509" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-108.11110933125,31.3055544255509"
+                    Point2="-112.11110933125,31.3055544255509"
+                    Point3="-112.11110933125,35.3055544255509" />
+                  <mssgle:LineSegment
+                    End="-112.11110933125,55.1111088511018" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion EmployeeTerritories Northwind.Paths[Lookup Match Output]"
+          TopLeft="270.055552637412,241.277774226334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="257.027774083532,99.7777756081687"
+              Start="0,0"
+              End="257.027774083532,92.2777756081687">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.7445208979993" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.7445208979993"
+                    Point2="0,40.7445208979993"
+                    Point3="4,40.7445208979993" />
+                  <mssgle:LineSegment
+                    End="253.027774083532,40.7445208979993" />
+                  <mssgle:CubicBezierSegment
+                    Point1="253.027774083532,40.7445208979993"
+                    Point2="257.027774083532,40.7445208979993"
+                    Point3="257.027774083532,44.7445208979993" />
+                  <mssgle:LineSegment
+                    End="257.027774083532,92.2777756081687" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="80.3225003230158,45.7445208979993,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion EmployeeTerritories Northwind\Employee_Territories Northwind">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion EmployeeTerritories Northwind\EMPLOYEE_TERRITORIES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion EmployeeTerritories Northwind\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

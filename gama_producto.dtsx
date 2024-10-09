@@ -1,0 +1,1044 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/8/2024 4:16:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CON-TO08"
+  DTS:CreatorName="CONELEC\harias"
+  DTS:DTSID="{D5416FA3-0AFB-4C69-95CC-02292F73658A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="gama_producto"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{3D365980-3913-4D6B-9629-E3B9CEF17A5B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Importacion gama producto"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{71DE19AC-B74F-4425-9501-0A864FCAB8F0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Importacion gama producto"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Importacion gama producto\Gama producto Jardineria"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Gama producto Jardineria"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from gama_producto</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion gama producto\Gama producto Jardineria.Connections[OleDbConnection]"
+                  connectionManagerID="{56153DD4-86C3-4D1E-B4CA-056CADF66E9A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[jardineria]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[GAMA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].ExternalColumns[GAMA]"
+                      length="50"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[GAMA]"
+                      name="GAMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[DESCRIPCION_TEXTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].ExternalColumns[DESCRIPCION_TEXTO]"
+                      length="4000"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[DESCRIPCION_TEXTO]"
+                      name="DESCRIPCION_TEXTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[DESCRIPCION_HTML]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].ExternalColumns[DESCRIPCION_HTML]"
+                      length="4000"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[DESCRIPCION_HTML]"
+                      name="DESCRIPCION_HTML"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[IMAGEN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].ExternalColumns[IMAGEN]"
+                      length="256"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[IMAGEN]"
+                      name="IMAGEN"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].ExternalColumns[GAMA]"
+                      dataType="wstr"
+                      length="50"
+                      name="GAMA" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].ExternalColumns[DESCRIPCION_TEXTO]"
+                      dataType="wstr"
+                      length="4000"
+                      name="DESCRIPCION_TEXTO" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].ExternalColumns[DESCRIPCION_HTML]"
+                      dataType="wstr"
+                      length="4000"
+                      name="DESCRIPCION_HTML" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].ExternalColumns[IMAGEN]"
+                      dataType="wstr"
+                      length="256"
+                      name="IMAGEN" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[GAMA]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[GAMA]"
+                      name="GAMA" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[DESCRIPCION_TEXTO]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[DESCRIPCION_TEXTO]"
+                      name="DESCRIPCION_TEXTO" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[DESCRIPCION_HTML]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[DESCRIPCION_HTML]"
+                      name="DESCRIPCION_HTML" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[IMAGEN]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[IMAGEN]"
+                      name="IMAGEN" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion gama producto\GAMA_PRODUCTO"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="GAMA_PRODUCTO"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[GAMA_PRODUCTO]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion gama producto\GAMA_PRODUCTO.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].Columns[GAMA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="GAMA"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].ExternalColumns[GAMA]"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[GAMA]" />
+                    <inputColumn
+                      refId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].Columns[DESCRIPCION_TEXTO]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="DESCRIPCION_TEXTO"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].ExternalColumns[DESCRIPCION_TEXTO]"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[DESCRIPCION_TEXTO]" />
+                    <inputColumn
+                      refId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].Columns[DESCRIPCION_HTML]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="DESCRIPCION_HTML"
+                      externalMetadataColumnId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].ExternalColumns[DESCRIPCION_HTML]"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[DESCRIPCION_HTML]" />
+                    <inputColumn
+                      refId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].Columns[IMAGEN]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="IMAGEN"
+                      externalMetadataColumnId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].ExternalColumns[IMAGEN]"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[IMAGEN]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].ExternalColumns[GAMA]"
+                      dataType="wstr"
+                      length="50"
+                      name="GAMA" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].ExternalColumns[DESCRIPCION_TEXTO]"
+                      dataType="wstr"
+                      length="4000"
+                      name="DESCRIPCION_TEXTO" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].ExternalColumns[DESCRIPCION_HTML]"
+                      dataType="wstr"
+                      length="4000"
+                      name="DESCRIPCION_HTML" />
+                    <externalMetadataColumn
+                      refId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input].ExternalColumns[IMAGEN]"
+                      dataType="wstr"
+                      length="256"
+                      name="IMAGEN" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion gama producto\GAMA_PRODUCTO.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion gama producto\GAMA_PRODUCTO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion gama producto\GAMA_PRODUCTO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\GAMA_PRODUCTO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion gama producto\GAMA_PRODUCTO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion gama producto\Lookup 1"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup 1"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT GAMA FROM GAMA_PRODUCTO</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT GAMA FROM GAMA_PRODUCTO) [refTable]
+where [refTable].[GAMA] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="GAMA" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[GAMA]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion gama producto\Lookup 1.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion gama producto\Lookup 1.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion gama producto\Lookup 1.Inputs[Lookup Input].Columns[GAMA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="GAMA"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[GAMA]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">GAMA</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion gama producto\Lookup 1.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Importacion gama producto\Lookup 1.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion gama producto\Lookup 1.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Importacion gama producto\Lookup 1.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion gama producto\Lookup 1.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Importacion gama producto\Lookup 1.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion gama producto\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion gama producto\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion gama producto\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE GAMA_PRODUCTO SET GAMA=?
+WHERE DESCRIPCION_TEXTO=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Importacion gama producto\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{17AA963B-CCA8-4EC6-B75B-FC911C141A71}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Importacion gama producto\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion gama producto\OLE DB Command.Inputs[OLE DB Command Input].Columns[GAMA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="GAMA"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Importacion gama producto\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[GAMA]" />
+                    <inputColumn
+                      refId="Package\Importacion gama producto\OLE DB Command.Inputs[OLE DB Command Input].Columns[DESCRIPCION_TEXTO]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="DESCRIPCION_TEXTO"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Importacion gama producto\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[DESCRIPCION_TEXTO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Importacion gama producto\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Importacion gama producto\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="4000"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion gama producto\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Importacion gama producto\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Importacion gama producto\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Importacion gama producto\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion gama producto\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Importacion gama producto\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Importacion gama producto\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Importacion gama producto\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Importacion gama producto\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Importacion gama producto\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Importacion gama producto\Sort 1.Inputs[Sort Input].Columns[GAMA]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="GAMA"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[GAMA]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion gama producto\Sort 1.Inputs[Sort Input].Columns[DESCRIPCION_TEXTO]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="DESCRIPCION_TEXTO"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[DESCRIPCION_TEXTO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion gama producto\Sort 1.Inputs[Sort Input].Columns[DESCRIPCION_HTML]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="DESCRIPCION_HTML"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[DESCRIPCION_HTML]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Importacion gama producto\Sort 1.Inputs[Sort Input].Columns[IMAGEN]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="IMAGEN"
+                      lineageId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[IMAGEN]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[GAMA]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[GAMA]"
+                      name="GAMA"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[GAMA]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[DESCRIPCION_TEXTO]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[DESCRIPCION_TEXTO]"
+                      name="DESCRIPCION_TEXTO"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[DESCRIPCION_TEXTO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[DESCRIPCION_HTML]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[DESCRIPCION_HTML]"
+                      name="DESCRIPCION_HTML">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[DESCRIPCION_HTML]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[IMAGEN]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output].Columns[IMAGEN]"
+                      name="IMAGEN">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output].Columns[IMAGEN]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Importacion gama producto.Paths[Lookup Match Output]"
+              endId="Package\Importacion gama producto\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Importacion gama producto\Lookup 1.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Importacion gama producto.Paths[Lookup No Match Output]"
+              endId="Package\Importacion gama producto\GAMA_PRODUCTO.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Importacion gama producto\Lookup 1.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Importacion gama producto.Paths[OLE DB Source Output]"
+              endId="Package\Importacion gama producto\Sort 1.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Importacion gama producto\Gama producto Jardineria.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Importacion gama producto.Paths[Sort Output]"
+              endId="Package\Importacion gama producto\Lookup 1.Inputs[Lookup Input]"
+              name="Sort Output"
+              startId="Package\Importacion gama producto\Sort 1.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="210.666666666667,42.6666666666667"
+          Id="Package\Importacion gama producto"
+          TopLeft="113.333331644535,33.3666660700242" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Importacion gama producto">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="200.666666666667,42.6666666666667"
+          Id="Package\Importacion gama producto\Gama producto Jardineria"
+          TopLeft="67.3958323290572,11.6999997907877" />
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\Importacion gama producto\GAMA_PRODUCTO"
+          TopLeft="150.972219972561,333.774994031638" />
+        <NodeLayout
+          Size="122.666666666667,42.6666666666667"
+          Id="Package\Importacion gama producto\Lookup 1"
+          TopLeft="147.22222002844,212.666663360596" />
+        <EdgeLayout
+          Id="Package\Importacion gama producto.Paths[Lookup No Match Output]"
+          TopLeft="208.555553361774,255.333330027262">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.4166666107874,78.4416640043755"
+              Start="0,0"
+              End="26.4166666107874,70.9416640043755">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.2208320021878" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.2208320021878"
+                    Point2="0,39.2208320021878"
+                    Point3="4,39.2208320021878" />
+                  <mssgle:LineSegment
+                    End="22.4166666107874,39.2208320021878" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.4166666107874,39.2208320021878"
+                    Point2="26.4166666107874,39.2208320021878"
+                    Point3="26.4166666107874,43.2208320021878" />
+                  <mssgle:LineSegment
+                    End="26.4166666107874,70.9416640043755" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-42.5980534133563,44.2208320021878,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="108,42.6666666666667"
+          Id="Package\Importacion gama producto\Sort 1"
+          TopLeft="227.777774383624,79.0555546386375" />
+        <EdgeLayout
+          Id="Package\Importacion gama producto.Paths[OLE DB Source Output]"
+          TopLeft="167.729165662391,54.3666664574544">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="114.048608721234,24.6888881811831"
+              Start="0,0"
+              End="114.048608721234,17.1888881811831">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.34444409059154" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.34444409059154"
+                    Point2="0,12.3444440905915"
+                    Point3="4,12.3444440905915" />
+                  <mssgle:LineSegment
+                    End="110.048608721234,12.3444440905915" />
+                  <mssgle:CubicBezierSegment
+                    Point1="110.048608721234,12.3444440905915"
+                    Point2="114.048608721234,12.3444440905915"
+                    Point3="114.048608721234,16.3444440905915" />
+                  <mssgle:LineSegment
+                    End="114.048608721234,17.1888881811831" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacion gama producto.Paths[Sort Output]"
+          TopLeft="281.777774383624,121.722221305304">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-73.2222210218509,90.9444420552917"
+              Start="0,0"
+              End="-73.2222210218509,83.4444420552917">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.4722210276459" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.4722210276459"
+                    Point2="0,45.4722210276459"
+                    Point3="-4,45.4722210276459" />
+                  <mssgle:LineSegment
+                    End="-69.2222210218509,45.4722210276459" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-69.2222210218509,45.4722210276459"
+                    Point2="-73.2222210218509,45.4722210276459"
+                    Point3="-73.2222210218509,49.4722210276459" />
+                  <mssgle:LineSegment
+                    End="-73.2222210218509,83.4444420552917" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Importacion gama producto\OLE DB Command"
+          TopLeft="355.555550257365,335.777771992154" />
+        <EdgeLayout
+          Id="Package\Importacion gama producto.Paths[Lookup Match Output]"
+          TopLeft="227.666664472885,255.333330027262">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="211.222219117814,80.4444419648912"
+              Start="0,0"
+              End="211.222219117814,72.9444419648912">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.7992359942689" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.7992359942689"
+                    Point2="0,32.7992359942689"
+                    Point3="4,32.7992359942689" />
+                  <mssgle:LineSegment
+                    End="207.222219117814,32.7992359942689" />
+                  <mssgle:CubicBezierSegment
+                    Point1="207.222219117814,32.7992359942689"
+                    Point2="211.222219117814,32.7992359942689"
+                    Point3="211.222219117814,36.7992359942689" />
+                  <mssgle:LineSegment
+                    End="211.222219117814,72.9444419648912" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="57.4197228401569,37.7992359942689,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion gama producto\Gama producto Jardineria">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion gama producto\GAMA_PRODUCTO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacion gama producto\Lookup 1">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
